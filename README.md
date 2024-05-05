@@ -21,10 +21,6 @@ Para utilizar este CLI, necesitas tener instalado `bash`, `curl`, `jq`, y `yq`. 
 
 Puedes instalar `jq` y `yq` en sistemas basados en Debian/Ubuntu usando:
 
-bash
-
-Copy code
-
 `sudo apt-get install jq
 sudo snap install yq` 
 

@@ -11,9 +11,9 @@ usage() {
     echo "Usage: $0 [-u BASE_URL] [-U USERNAME] [-P PASSWORD] COMMAND [OPTIONS]"
     echo
     echo "Options:"
-    echo "  -u BASE_URL    Base URL of the Nginx Proxy Manager API"
-    echo "  -U USERNAME    Username for obtaining the token"
-    echo "  -P PASSWORD    Password for obtaining the token"
+    echo "  -u BASE_URL       Base URL of the Nginx Proxy Manager API" 
+    echo "  -U USERNAME       Username for obtaining the token"
+    echo "  -P PASSWORD       Password for obtaining the token"
     echo
     echo "Commands:"
     echo "  list-proxies      List all proxy hosts"
@@ -22,6 +22,11 @@ usage() {
     echo "  update-proxy      Update an existing proxy host"
     echo "  delete-proxy      Delete a proxy host"
     echo
+    echo "Examples:"
+    echo "  $0 -u http://localhost:81 -U admin -P changeme list-proxies"
+    echo "  $0 -u http://localhost:81 -U admin -P changeme get-proxy 1"
+    echo "  $0 -u http://localhost:81 -U admin -P changeme list-proxies -o table"
+    echo "  $0 -u http://localhost:81 -U admin -P changeme update-proxy 1 proxy.json"
     exit 1
 }
 
@@ -68,7 +73,7 @@ get_proxy() {
     local id="$1"
     local format="$2"
     RESPONSE=$(curl -s -H "Authorization: Bearer $TOKEN" "$BASE_URL/api/nginx/proxy-hosts/$id")
-    table_jq_structure='{ID: .id, Domain: .domain_names[0], Forward_Host: .forward_host, Forward_Port: .forward_port} | to_entries | .[] | "\(.key):\t\(.value)"'
+    table_jq_structure='.[0] | [.id, (.domain_names | join(",")), .forward_host, .forward_port, if .enabled == 1 then "true" else "false" end, .meta.nginx_online] | @tsv'
     convert_output "$RESPONSE" "$format" "$table_jq_structure"
 }
 

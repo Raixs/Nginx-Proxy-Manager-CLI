@@ -39,29 +39,29 @@ Para utilizar el CLI, debes proporcionar las credenciales de usuario (nombre de 
 
 ### Sintaxis General
 
-`./nombre_del_script.sh [-u BASE_URL] [-U USERNAME] [-P PASSWORD] COMMAND [OPTIONS]` 
+`./nginx-proxy-manager-cli.sh [-u BASE_URL] [-U USERNAME] [-P PASSWORD] COMMAND [OPTIONS]` 
 
 ### Ejemplos de Uso
 
 1.  **Listar todos los proxies en formato tabla**
     
-    `./nombre_del_script.sh -U miUsuario -P miContraseña list-proxies -o table` 
+    `./nginx-proxy-manager-cli.sh -U miUsuario -P miContraseña list-proxies -o table` 
     
 2.  **Obtener detalles de un proxy específico en formato YAML**
     
-    `./nombre_del_script.sh -U miUsuario -P miContraseña get-proxy 123 -o yaml` 
+    `./nginx-proxy-manager-cli.sh -U miUsuario -P miContraseña get-proxy 123 -o yaml` 
     
 3.  **Crear un nuevo proxy desde un archivo JSON**
     
-    `./nombre_del_script.sh -U miUsuario -P miContraseña create-proxy nuevo_proxy.json` 
+    `./nginx-proxy-manager-cli.sh -U miUsuario -P miContraseña create-proxy nuevo_proxy.json` 
     
 4.  **Actualizar un proxy existente desde un archivo JSON**
     
-    `./nombre_del_script.sh -U miUsuario -P miContraseña update-proxy 123 actualizacion_proxy.json` 
+    `./nginx-proxy-manager-cli.sh -U miUsuario -P miContraseña update-proxy 123 actualizacion_proxy.json` 
     
 5.  **Eliminar un proxy**
     
-    `./nombre_del_script.sh -U miUsuario -P miContraseña delete-proxy 123` 
+    `./nginx-proxy-manager-cli.sh -U miUsuario -P miContraseña delete-proxy 123` 
     
 
 ## Contribuciones
